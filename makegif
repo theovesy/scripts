@@ -1,27 +1,27 @@
 #!/bin/sh
 
-# usage
-# makegif (-c) target_name fps file_type
+# Trying to make a better script to create a gif from image folder
+# It can resize the output gif
+# You need ImageMagick
+#
+# usage:
+# makegif target_name fps file_type (resize_percentage)
+#
+# target_name is the name of the output file (without .gif extension)
+# fps is the frames per second parameter
+# file_type is the type of files the script will look for (ex: jpg, png) be careful, this is case sensitive
+# resize_percentage is optionnal but resizes the output gif
+#
+# Example use :
+# makegif mygif 24 JPG 40
+# or without options
+# makegif myothergif 24 png
 
-export_gif () {
-	frames=
-	ffmpeg -loglevel error -stats -i $frames -vf fps=$2,scale=720:-1 $3
-}
+resize=${4:="100"}
 
-if [ $1 = "-c" ]
-then
-	mkdir temp_processed
-	i=1
-	for f in *.$4
-	do
-		name="$(printf "%03d" "$i")"
-		ffmpeg -loglevel error -stats -i $f -q:v 1 temp_processed/$name"."$4
-		i=$((i+1))
-	done
-	#export_gif temp_processed/ $3 $2
-	#rm -r temp_processed
-else
- echo "lol"
-fi
+convert -resize $resize"%" -delay $2 -loop 0 "*."$3 $1".gif"
+
+
+
 
 
