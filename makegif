@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# usage
+# makegif (-c) target_name fps file_type
+
+export_gif () {
+	frames=
+	ffmpeg -loglevel error -stats -i $frames -vf fps=$2,scale=720:-1 $3
+}
+
+if [ $1 = "-c" ]
+then
+	mkdir temp_processed
+	i=1
+	for f in *.$4
+	do
+		name="$(printf "%03d" "$i")"
+		ffmpeg -loglevel error -stats -i $f -q:v 1 temp_processed/$name"."$4
+		i=$((i+1))
+	done
+	#export_gif temp_processed/ $3 $2
+	#rm -r temp_processed
+else
+ echo "lol"
+fi
+
+

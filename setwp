@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# This script sets the wallpaper
+# It copies the image to ~/.wallpaper
+# as a file name wp, this file is the used by feh in bspwmrc
+
+#Delete the previous wp
+rm ~/.wallpaper/wp
+
+#Copy the image to the wallpaper folder
+cp $1 ~/.wallpaper/wp
+
+#Run feh
+feh --bg-fill ~/.wallpaper/wp
+
+
+
+

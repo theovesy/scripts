@@ -1,0 +1,15 @@
+#! /bin/sh
+
+# Script to automatically compile files/documents depending on their format
+
+name=${1%%.*}
+format=${1##*.}
+
+case $format in
+	"ms")
+		groff -ms $1 -T pdf > $name".pdf" ;;
+	"c" | "cpp")
+		make $1 ;;
+	"rs")
+		rustc $1 ;;
+esac

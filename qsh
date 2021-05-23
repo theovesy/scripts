@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Quick Search
+# Opens a new tab in firefox
+
+firefox -new-tab -url about:newtab
+
+# TO ADD quick search with search argument; open in new floating window

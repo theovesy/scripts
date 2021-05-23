@@ -1,0 +1,11 @@
+#! /bin/sh
+
+# Script to set everything when computer is unplugged from monitor and keyboard
+
+xrandr --output LVDS-1 --primary --mode 1366x768 --rotate normal
+
+bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+
+# Restart bspwm
+bspc wm -r
+

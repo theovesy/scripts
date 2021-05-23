@@ -1,0 +1,21 @@
+#! /bin/sh
+
+# Script to set everything when computer is plugged to keyboard and monitor
+
+# activate monitor
+xrandr --output LVDS-1 --primary --mode 1366x768 --rotate normal --output VGA-1 --mode 1920x1080 --rotate normal --right-of LVDS-1
+bspc monitor VGA-1 -d 1 2 3 4 5
+bspc monitor LVDS-1 -d 6 7 8 9 10
+
+# Launch polybar secondary (doesn't work for some reason)
+polybar secondary &
+
+# Reset keybindings
+setxkbmap -layout us,fr -option grp:alt_space_toggle
+xset r rate 300 50
+setxkbmap -option caps:escape
+
+# Reapply wpp
+feh --bg-fill ~/.wallpaper/wp
+# Restart bspwm
+bspc wm -r
